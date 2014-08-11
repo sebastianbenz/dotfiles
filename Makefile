@@ -1,4 +1,3 @@
-# Makefile for dotfiles in the style of
 # http://github.com/mitsuhiko/dotfiles/blob/master/Makefile
 # found in https://github.com/sanitz/dotfiles/blob/master/Makefile
 

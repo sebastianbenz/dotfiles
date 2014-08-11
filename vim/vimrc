@@ -143,7 +143,7 @@ endfunction"}}}
 " Markdown"{{{
 
 let g:vim_markdown_folding_disabled=1
-let g:vimwiki_list = [{'path': '~/dev/vimwiki', 'syntax': 'markdown', 'ext': '.md'}]
+let g:vimwiki_list = [{'path': '~/Dropbox/vimwiki', 'syntax': 'markdown', 'ext': '.md'}]
 au BufNewFile,BufRead *.txt set filetype=markdown"}}}
 
 " CTAGS"{{{
