@@ -7,6 +7,7 @@ ZSH=$HOME/.oh-my-zsh
 # time that oh-my-zsh is loaded.
 # this version of agnoster is downloaded from: https://gist.github.com/3712874
 ZSH_THEME="custom-agnoster"
+#ZSH_THEME="robbyrussell"
 
 # set default user for agnoster theme
 DEFAULT_USER="sebastian"
@@ -33,7 +34,7 @@ DISABLE_AUTO_TITLE="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(vi-mode history-substring-search command-not-found ) 
+plugins=(history-substring-search command-not-found ) 
 
 source $ZSH/oh-my-zsh.sh
 
@@ -58,6 +59,7 @@ bindkey "^S" history-incremental-pattern-search-forward
 
 # vi mode
 bindkey kj vi-cmd-mode
+bindkey -v
 
 # tell remote hosts to use byobu, if available
 export LC_TERMTYPE=byobu
@@ -83,3 +85,20 @@ export TERM="screen-256color"
 # ignore duplicate history entries
 export HISTCONTROL=erasedups
 alias vi='/usr/local/bin/vim'
+
+export KEYTIMEOUT=1
+source ~/.zsh/opp.zsh/*.zsh
+[[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
+
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0.jdk/Contents/Home
+
+# android
+export ANDROID_SDK=/usr/local/Cellar/android-sdk/22.6.2
+export ANDROID_HOME=/usr/local/Cellar/android-sdk/22.6.2
+
+# maven
+export MAVEN_OPTS=-Xmx1024M
+
+#gradle
+export GRADLE_HOME=/usr/local/Cellar/gradle/1.11/libexec
+
