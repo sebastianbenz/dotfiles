@@ -11,6 +11,7 @@
   diff = auto
   interactive = auto
   status = auto
+	ui = true
 [alias]
   st = status -sb
   ci = commit
@@ -32,3 +33,5 @@
 	smudge = git-media-smudge %f
 [push]
 	default = simple
+[diff]
+	tool = vimdiff
