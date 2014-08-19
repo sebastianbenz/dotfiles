@@ -82,9 +82,23 @@ nnoremap <leader><leader> <c-^>
 " close buffer
 map <leader>c :bd<cr>
 map <leader>cc :bd!<cr>
+" OPTIONAL: Starting with Vim 7, the filetype of empty .tex files defaults to
+" 'plaintex' instead of 'tex', which results in vim-latex not being loaded.
+" " The following changes the default filetype back to 'tex':
+let g:tex_flavor='latex'
+" use silver searcher instead of ack
+let g:ackprg = 'ag --nogroup --nocolor --column'
+" quick editing of .vimrc (from sanitz)
+nnoremap <silent> <leader>e :e! ~/.vimrc<cr>
+nnoremap <silent> <leader>s :source ~/.vimrc<cr>
 " }}}
 
-
+" ctrl-p "{{{
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+  \ 'file': '\v\.(exe|so|dll)$'
+  \ }
+" }}}
 
 " Colors"{{{
 set background=dark
