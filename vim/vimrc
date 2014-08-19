@@ -55,6 +55,7 @@ vnoremap <silent> # :<C-U>
   \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
   \gV:call setreg('"', old_reg, old_regtype)<CR>
 
+set wildignore+=*/tmp/*,*.so,*.swp,*.class     
 set anti enc=utf-8
 set guifont=Impact}}}
 
@@ -82,6 +83,7 @@ nnoremap <leader><leader> <c-^>
 map <leader>c :bd<cr>
 map <leader>cc :bd!<cr>
 " }}}
+
 
 
 " Colors"{{{
@@ -123,19 +125,6 @@ map <F2> :NERDTreeToggle<cr>
 let NERDTreeIgnore=['\.DS_Store$', '\.vim$', '\.git[[dir]]$', '\.metadata[[dir]]$', '\.gradle$[[dir]]', '\.idea[[dir]]$', '\.repo[[dir]]$', '\.settings[[dir]]$']
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 " }}}
-
-" CTR SPACE"{{{
-
-if has("gui_running")
-    " C-Space seems to work under gVim on both Linux and win32
-    inoremap <C-Space> <C-n>
-else " no gui
-  if has("unix")
-    inoremap <Nul> <C-n>
-  else
-  " I have no idea of the name of Ctrl-Space elsewhere
-  endif
-endif"}}}
 
 " Muliple cursors"{{{
 
