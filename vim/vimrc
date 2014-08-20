@@ -226,17 +226,28 @@ endif
 "let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
 "let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
 "let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+" }}}
 
 " Airline"{{{
 "":set statusline=%<%f\ (%{&ft})\ %-4(%m%)%=%-19(%3l,%02c%03V%)
 let g:airline_powerline_fonts=1   " make sure powerline font is installed
 let g:airline#extensions#whitespace#mixed_indent_algo = 1"
-set laststatus=2"}}}
+set laststatus=2
+"}}}
 
 " Groovy / Gradle"{{{
 
-au BufNewFile,BufRead *.gradle set filetype=groovy"}}}
+au BufNewFile,BufRead *.gradle set filetype=groovy
+"}}}
 
 " XML "{{{
 au FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -\ 2>/dev/null
 " }}}
+
+
+" Fugitive "{{{
+map <leader>gs :Gstatus<CR>
+map <leader>gc :Gcommit<CR>
+map <leader>gd :Gdiff<CR>
+map <leader>gp :Gpush<CR>
+"}}}
