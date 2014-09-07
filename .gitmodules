@@ -62,7 +62,6 @@
 [submodule "vim/bundle/vimwiki"]
 	path = vim/bundle/vimwiki
 	url = https://github.com/vimwiki/vimwiki.git
-
 [submodule "zsh/opp.zsh"]
 	path = zsh/opp.zsh
 	url = https://github.com/hchbaw/opp.zsh.git
