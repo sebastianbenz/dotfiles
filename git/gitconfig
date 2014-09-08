@@ -2,7 +2,7 @@
   email = sebastian.benz@gmail.com
   name = Sebastian Benz
 [core]
-  editor = vi
+  editor = vim
   excludesfile = ~/.gitignore_global
 	autocrlf = input
 [color]
@@ -13,6 +13,8 @@
   status = auto
 	ui = true
 [alias]
+  am = git commit -a --amend
+  amn = git commit -a --amend --no-edit
   st = status -sb
   ci = commit
   br = branch
