@@ -166,7 +166,7 @@ au BufNewFile,BufRead *.txt set filetype=markdown"}}}
 :set tags=./tags;
 let Tlist_Ctags_Cmd = "/usr/local/bin/ctags"
 let Tlist_WinWidth = 50
-map <F4> :TlistToggle<cr>
+map <F4> :TagbarToggle<cr>
 map <F8> :silent !/usr/local/bin/ctags -R --exclude=.git . --sort=foldcase<cr>
 let Tlist_Use_Right_Window   = 1"}}}
 
