@@ -79,6 +79,8 @@ imap <c-c> <esc>
 nnoremap <cr> :nohlsearch<cr>
 " switch to previous buffer
 nnoremap <leader><leader> <c-^>
+" save
+map <leader>w :w<cr>
 " close buffer
 map <leader>c :bd<cr>
 map <leader>cc :bd!<cr>
