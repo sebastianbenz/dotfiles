@@ -5,8 +5,10 @@ install: install-vim install-git install-custom-zsh
 
 install-vim:
 	rm -rf ~/.vim ~/.vimrc
+	rm -rf ~/.vim ~/.ideavimrc
 	ln -s `pwd`/vim ~/.vim
 	ln -s ~/.vim/vimrc ~/.vimrc
+	ln -s ~/.vim/ideavimrc ~/.ideavimrc
 
 install-git:
 	rm -rf ~/.gitconfig ~/.gitignore_global
