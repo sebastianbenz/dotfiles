@@ -71,3 +71,6 @@
 [submodule "vim/bundle/vim-marked"]
 	path = vim/bundle/vim-marked
 	url = https://github.com/itspriddle/vim-marked.git
+[submodule "vim/bundle/vim-gitgutter"]
+	path = vim/bundle/vim-gitgutter
+	url = https://github.com/airblade/vim-gitgutter.git
