@@ -13,8 +13,8 @@
   status = auto
 	ui = true
 [alias]
-  am = git commit -a --amend
-  amn = git commit -a --amend --no-edit
+  am = commit -a --amend
+  amn = commit -a --amend --no-edit
   st = status -sb
   ci = commit
   br = branch
