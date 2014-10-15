@@ -100,5 +100,5 @@ export ANDROID_HOME=/usr/local/Cellar/android-sdk/22.6.2
 export MAVEN_OPTS=-Xmx1024M
 
 #gradle
-export GRADLE_HOME=/usr/local/Cellar/gradle/1.11/libexec
+export GRADLE_HOME=/usr/local/Cellar/gradle/2.1/libexec
 
