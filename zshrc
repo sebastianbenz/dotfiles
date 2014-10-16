@@ -93,8 +93,8 @@ source ~/.zsh/opp.zsh/*.zsh
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0.jdk/Contents/Home
 
 # android
-export ANDROID_SDK=/usr/local/Cellar/android-sdk/22.6.2
-export ANDROID_HOME=/usr/local/Cellar/android-sdk/22.6.2
+export ANDROID_HOME=/usr/local/opt/android-sdk
+export ANDROID_SDK=/usr/local/opt/android-sdk
 
 # maven
 export MAVEN_OPTS=-Xmx1024M
