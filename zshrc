@@ -101,4 +101,7 @@ export MAVEN_OPTS=-Xmx1024M
 
 #gradle
 export GRADLE_HOME=/usr/local/Cellar/gradle/2.1/libexec
+export GOPATH=~/Projects/go
+PATH=$PATH:$GOPATH/bin
+
 
