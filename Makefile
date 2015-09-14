@@ -1,7 +1,10 @@
 # http://github.com/mitsuhiko/dotfiles/blob/master/Makefile
 # found in https://github.com/sanitz/dotfiles/blob/master/Makefile
 
-install: install-vim install-git install-custom-zsh 
+install: update install-vim install-git install-custom-zsh 
+
+update:
+	git submodule update --init --recursive
 
 install-vim:
 	rm -rf ~/.vim ~/.vimrc
