@@ -160,7 +160,7 @@ endfunction"}}}
 " Markdown"{{{
 
 let g:vim_markdown_folding_disabled=1
-let g:vimwiki_list = [{'path': '~/Dropbox/vimwiki', 'syntax': 'markdown', 'ext': '.md'}]
+let g:vimwiki_list = [{'path': '~/Documents/vimwiki', 'syntax': 'markdown', 'ext': '.md'}]
 au BufNewFile,BufRead *.txt set filetype=markdown"}}}
 
 " CTAGS"{{{
@@ -279,3 +279,10 @@ map <leader>gc :Gcommit<CR>
 map <leader>gd :Gdiff<CR>
 map <leader>gp :Gpush<CR>
 "}}}
+
+" Go "{{{
+au FileType go nmap <leader>r <Plug>(go-run)
+au FileType go nmap <leader>b <Plug>(go-build)
+au FileType go nmap <leader>t <Plug>(go-test)
+au FileType go nmap <leader>c <Plug>(go-coverage)
+" }}}

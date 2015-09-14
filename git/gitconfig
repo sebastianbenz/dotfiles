@@ -1,5 +1,5 @@
 [user]
-  email = sebastian.benz@gmail.com
+	email = sbenz@google.com
   name = Sebastian Benz
 [core]
   editor = vim
@@ -27,6 +27,7 @@
   wdf = diff --word-diff
   wdfc = diff --word-diff --cached
   serve = !git daemon --reuseaddr --verbose --base-path=. --export-all ./.git
+  login = credential-corpsso login
 [url "ssh://git@github.com/"]
   insteadOf = gh:
   insteadOf = gh:~
@@ -43,3 +44,7 @@
 [mergetool "sourcetree"]
 	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
+[google]
+	lastUpdateCheck = 20150812000000
+[http]
+	cookiefile = /Users/sbenz/.gitcookies

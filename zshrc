@@ -6,7 +6,7 @@ ZSH=$HOME/.oh-my-zsh
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 # this version of agnoster is downloaded from: https://gist.github.com/3712874
-ZSH_THEME="custom-agnoster"
+ZSH_THEME="agnoster"
 #ZSH_THEME="robbyrussell"
 
 # set default user for agnoster theme
@@ -90,11 +90,11 @@ export KEYTIMEOUT=1
 source ~/.zsh/opp.zsh/*.zsh
 [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
 
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0.jdk/Contents/Home
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_31.jdk/Contents/Home
 
 # android
-export ANDROID_HOME=/usr/local/opt/android-sdk
-export ANDROID_SDK=/usr/local/opt/android-sdk
+export ANDROID_HOME=/Users/sbenz/Library/Android/sdk/
+export ANDROID_SDK=/Users/sbenz/Library/Android/sdk/
 
 # maven
 export MAVEN_OPTS=-Xmx1024M
@@ -105,3 +105,14 @@ export GOPATH=~/Projects/go
 PATH=$PATH:$GOPATH/bin
 
 
+DEFAULT_USER=sbenz
+export PATH=$PATH:/usr/local/opt/go/libexec/bin
+export GOPATH=~/projects/go
+export PATH=$PATH:$GOPATH/bin
+export PATH="/usr/local/bin:$PATH"
+
+export PATH="$PATH:/Users/sbenz/Tools/infer-osx-v0.1.0/infer/infer/bin"  
+
+
+alias log adb logcat
+alias logc adb logcat -c && adb logcat

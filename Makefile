@@ -24,6 +24,7 @@ install-git:
 	ln -s `pwd`/git/gitignore_global ~/.gitignore_global
 
 install-zsh:
+	git submodule update --init --recursive
 	rm -rf ~/.zshrc ~/.oh-my-zsh ~/.zsh ~/.zprofile
 	ln -s `pwd`/zshrc ~/.zshrc
 	ln -s `pwd`/oh-my-zsh ~/.oh-my-zsh
