@@ -1,10 +1,15 @@
 # http://github.com/mitsuhiko/dotfiles/blob/master/Makefile
-# found in https://github.com/sanitz/dotfiles/blob/master/Makefile
+# found in https://github.com/sanitz/dotfiles/blob/master/Makefile 
+install: init install-vim install-git install-custom-zsh 
 
-install: update install-vim install-git install-custom-zsh 
+init:
+	git submodule update --init --recursive
 
 update:
-	git submodule update --init --recursive
+	git submodule foreach git pull origin master
+	git add .
+	git commit -a -m "updated submodules"
+	git push origin master
 
 install-vim:
 	rm -rf ~/.vim ~/.vimrc
