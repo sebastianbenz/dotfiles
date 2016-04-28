@@ -3,7 +3,7 @@
   name = Sebastian Benz
 [core]
   editor = vim
-  excludesfile = ~/.gitignore_global
+	excludesfile = /Users/sbenz/.gitignore_global
 	autocrlf = input
 [color]
   ui = auto
@@ -14,6 +14,7 @@
 	ui = true
 [alias]
   am = commit -a --amend
+  amn = commit -a --amend --no-edit
   amn = commit -a --amend --no-edit
   st = status -sb
   ci = commit
@@ -28,6 +29,8 @@
   wdfc = diff --word-diff --cached
   serve = !git daemon --reuseaddr --verbose --base-path=. --export-all ./.git
   login = credential-corpsso login
+  review = push origin HEAD:refs/for/master
+  upstream = "!sh -c 'git fetch upstream && git rebase upstream/master'"
 [url "ssh://git@github.com/"]
   insteadOf = gh:
   insteadOf = gh:~
@@ -48,3 +51,5 @@
 	lastUpdateCheck = 20150812000000
 [http]
 	cookiefile = /Users/sbenz/.gitcookies
+[url "persistent-https://devrel-review.git.corp.google.com"]
+	insteadOf = https://devrel-review.git.corp.google.com
