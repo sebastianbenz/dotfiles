@@ -1,0 +1,1 @@
+{'Node', 'Sample', 'This', 'sample', 'demonstrates', 'https:', 'developers', 'google', 'cache', 'use-amp-url', 'from', 'sample:', 'Edit', 'following', 'line', 'console', 'apis', 'acceleratedmobilepageurl', 'googleapis', 'overview', 'const', 'API_KEY', '<your-api-key>', 'with:', 'node'}

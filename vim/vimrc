@@ -38,9 +38,6 @@ set softtabstop=2
 set showmode
 set incsearch
 set number
-" use tab for completion
-set wildmode=longest,list,full
-set wildmenu
 " delete all trailing whitespace
 :nnoremap <silent> <F9> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
 
@@ -86,10 +83,6 @@ map <leader>w :w<cr>
 " close buffer
 map <leader>c :bd<cr>
 map <leader>cc :bd!<cr>
-" OPTIONAL: Starting with Vim 7, the filetype of empty .tex files defaults to
-" 'plaintex' instead of 'tex', which results in vim-latex not being loaded.
-" " The following changes the default filetype back to 'tex':
-let g:tex_flavor='latex'
 " use silver searcher instead of ack
 let g:ackprg = 'ag --nogroup --nocolor --column'
 " quick editing of .vimrc (from sanitz)
@@ -105,8 +98,9 @@ let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v[\/]\.(git|hg|svn)$',
   \ 'file': '\v\.(exe|so|dll)$'
   \ }
-" }}}
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+" }}}
+
 " Colors"{{{
 set background=dark
 " solarized options 
@@ -124,14 +118,16 @@ if !has('gui_running')
 
     " Make Solarized use 16 colors for Terminal support
     let g:solarized_termcolors=16
-endif"}}}
+endif
+"}}}
 
 " Spelling"{{{
 set spelllang=en
 set spellfile=$HOME/Dropbox/configs/vim/spell/en.utf-8.add
 autocmd BufRead,BufNewFile *.md,*.txt,*.tex setlocal spell
 autocmd FileType gitcommit setlocal spell
-set complete+=kspell""}}}
+set complete+=kspell
+""}}}
 
 " Nerdtree "{{{
 let NERDTreeShowBookmarks=1
@@ -147,22 +143,11 @@ let NERDTreeIgnore=['\.DS_Store$', '\.vim$', '\.git[[dir]]$', '\.metadata[[dir]]
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 " }}}
 
-" Muliple cursors"{{{
-
-function! Multiple_cursors_before()
-    exe 'NeoCompleteLock'
-    echo 'Disabled autocomplete'
-endfunction
-
-function! Multiple_cursors_after()
-    exe 'NeoCompleteUnlock'
-    echo 'Enabled autocomplete'
-endfunction"}}}
-
 " Markdown"{{{
 
 let g:vim_markdown_folding_disabled=1
-au BufNewFile,BufRead *.txt set filetype=markdown"}}}
+au BufNewFile,BufRead *.txt set filetype=markdown
+"}}}
 
 " CTAGS"{{{
 
@@ -174,57 +159,68 @@ map <F8> :silent !/usr/local/bin/ctags -R --exclude=.git . --sort=foldcase<cr>
 let Tlist_Use_Right_Window   = 1"}}}
 
 " neocomplete {{{
-  let g:neocomplete#data_directory = '~/.vim/tmp/neocomplete'
-  let g:neocomplete#enable_at_startup = 1
-  let g:neocomplete#enable_auto_select = 1
-  let g:neocomplete#enable_smart_case = 1
-  let g:neocomplete#auto_completion_start_length = 2
+" Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
+" Disable AutoComplPop.
+let g:acp_enableAtStartup = 0
+" Use neocomplete.
+let g:neocomplete#enable_at_startup = 1
+" Use smartcase.
+let g:neocomplete#enable_smart_case = 1
+" Set minimum syntax keyword length.
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
 
-  " increase limit for tag cache files
-  let g:neocomplete#sources#tags#cache_limit_size = 16777216 " 16MB
+" Define dictionary.
+let g:neocomplete#sources#dictionary#dictionaries = {
+    \ 'default' : '',
+    \ 'vimshell' : $HOME.'/.vimshell_hist',
+    \ 'scheme' : $HOME.'/.gosh_completions'
+        \ }
 
-  " fuzzy completion breaks dot-repeat more noticeably
-  " https://github.com/Shougo/neocomplete.vim/issues/332
-  let g:neocomplete#enable_fuzzy_completion = 0
+" Define keyword.
+if !exists('g:neocomplete#keyword_patterns')
+    let g:neocomplete#keyword_patterns = {}
+endif
+let g:neocomplete#keyword_patterns['default'] = '\h\w*'
 
-  " always use completions from all buffers
-  if !exists('g:neocomplete#same_filetypes')
-    let g:neocomplete#same_filetypes = {}
-  endif
-  let g:neocomplete#same_filetypes._ = '_'
+" Plugin key-mappings.
+inoremap <expr><C-g>     neocomplete#undo_completion()
+inoremap <expr><C-l>     neocomplete#complete_common_string()
 
-  " enable omni-completion for Ruby and PHP
-  call neocomplete#util#set_default_dictionary(
-        \'g:neocomplete#sources#omni#input_patterns', 'ruby',
-        \'[^. *\t]\.\h\w*\|\h\w*::\w*')
-  call neocomplete#util#set_default_dictionary(
-        \'g:neocomplete#sources#omni#input_patterns',
-        \'php',
-        \'[^. \t]->\h\w*\|\h\w*::\w*')
+" Recommended key-mappings.
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+  return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
+  " For no inserting <CR> key.
+  "return pumvisible() ? "\<C-y>" : "\<CR>"
+endfunction
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+" Close popup by <Space>.
+"inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
 
-  " disable for Python
-  call neocomplete#util#set_default_dictionary(
-        \'g:neocomplete#sources#omni#input_patterns',
-        \'python',
-        \'')
+" AutoComplPop like behavior.
+"let g:neocomplete#enable_auto_select = 1
 
-  " from neocomplete.txt:
-  " ---------------------
+" Enable omni completion.
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
-  " Plugin key-mappings.
-  inoremap <expr> <C-g> neocomplete#undo_completion()
-  inoremap <expr> <C-l> neocomplete#complete_common_string()
+" Enable heavy omni completion.
+if !exists('g:neocomplete#sources#omni#input_patterns')
+  let g:neocomplete#sources#omni#input_patterns = {}
+endif
+"let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+"let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+"let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
 
-  " Recommended key-mappings.
-  " <CR>: cancel popup and insert newline.
-  inoremap <silent> <CR> <C-r>=neocomplete#smart_close_popup()<CR><CR>
-  " <TAB>: completion.
-  inoremap <expr> <Tab> pumvisible() ? "\<C-y>" : "\<Tab>"
-  " <C-h>, <BS>: close popup and delete backword char.
-  inoremap <expr> <C-h> neocomplete#smart_close_popup()."\<C-h>"
-  inoremap <expr> <BS>  neocomplete#smart_close_popup()."\<C-h>"
-  inoremap <expr> <C-y> neocomplete#close_popup()
-  inoremap <expr> <C-e> neocomplete#cancel_popup()
   " }}}
 
 " Airline"{{{

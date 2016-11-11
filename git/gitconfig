@@ -13,11 +13,11 @@
   status = auto
 	ui = true
 [alias]
+  a = add . 
   am = commit -a --amend
   amn = commit -a --amend --no-edit
-  amn = commit -a --amend --no-edit
   st = status -sb
-  ci = commit
+  c = commit .
   br = branch
   co = checkout
   df = diff

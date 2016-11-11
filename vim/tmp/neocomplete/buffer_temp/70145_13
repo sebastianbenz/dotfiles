@@ -1,0 +1,58 @@
+<!doctype html>
+<html ⚡>
+  <head>
+    <meta charset="utf-8">
+    <style amp-custom>
+      {{> css/material.css}}
+      {{> css/styles.css}}
+      {{{styles}}}
+      main {
+        margin: 0 auto;
+        max-width: 500px;
+      }
+      ul.example-list {
+        padding: 0;
+        padding: 0;
+        list-style-type: none;
+      }
+      ul.example-list a {
+        text-decoration: none;
+        line-height: 200%;
+        cursor: pointer;
+      }
+      .amp-experiment {
+        padding-right: 24px;
+        background-position: right center;
+        background-repeat: no-repeat;
+        background-image: -webkit-image-set(
+          url('/img/ic_experiment_black_1x_web_18dp.png') 1x,
+          url('/img/ic_experiment_black_2x_web_18dp.png') 2x );
+      }
+    </style>
+    {{> head.html}}
+  <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+  <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+    <script async src="https://cdn.ampproject.org/v0.js"></script>
+  </head>
+  <body>
+    <div class="body">
+      {{> header.html}}
+      <main>
+      <p><a href="https://www.ampproject.org">Accelerated Mobile Pages</a> (short AMP) are a new way to build web pages that render with <a href="https://medium.com/@cramforce/why-amp-is-fast-7d2ff1f48597#.vw1vt1fym">reliable, fast performance</a>.</p>
+      <p>AMP by Example gives a hands-on introduction to Accelerated Mobile Pages based on code and live samples. Learn how to create websites with AMP and how to effectively make use of the different AMP components.</p>
+      
+      <p>Read the <a href="https://medium.com/@sebabenz/introducing-amp-by-example-dc6118794369#.ganu8ghx6">blog post</a> for more details.</p>
+          {{#categories}}
+          <h4>{{name}}</h4>
+          <ul class="example-list">
+            {{#examples}}
+            <li><a {{#experiment}}class='amp-experiment'{{/experiment}} href="{{url}}">{{title}}</a></li>
+            {{/examples}}
+          </ul>
+          {{/categories}}
+      </main>
+      {{> footer.html}}
+    </div>
+    {{> analytics.html}}
+  </body>
+</html>

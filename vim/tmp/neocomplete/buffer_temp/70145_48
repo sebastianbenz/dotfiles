@@ -1,0 +1,13 @@
+<header>
+  <div class="toolbar">
+  {{#github}}
+    <a href="{{this}}" class="gist action">
+      View on Github 
+    </a>
+  {{/github}}
+  </div>
+  <amp-img class="logo" src="/favic width="64" height="64"> </amp-img>
+  <h1>
+    <a href="/">AMP by Example</a>
+  </h1>
+</header>

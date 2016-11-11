@@ -109,7 +109,9 @@ DEFAULT_USER=sbenz
 export PATH=$PATH:/usr/local/opt/go/libexec/bin
 export GOPATH=~/projects/go
 export PATH=$PATH:$GOPATH/bin
+# make sure homebrew bin comes before default /usr/bin
 export PATH="/usr/local/bin:$PATH"
+export PATH="/opt/local/bin:$PATH"
 
 export PATH="$PATH:/Users/sbenz/Tools/infer-osx-v0.1.0/infer/infer/bin"  
 
@@ -125,3 +127,8 @@ source '/Users/sbenz/google-cloud-sdk/path.zsh.inc'
 
 # The next line enables shell command completion for gcloud.
 source '/Users/sbenz/google-cloud-sdk/completion.zsh.inc'
+
+export AMP_BY_EXAMPLE_DEPLOY_KEY="Fast/Faster/Amp"
+
+#Hierarchy Viewer Variable 
+export ANDROID_HVPROTO=ddm
