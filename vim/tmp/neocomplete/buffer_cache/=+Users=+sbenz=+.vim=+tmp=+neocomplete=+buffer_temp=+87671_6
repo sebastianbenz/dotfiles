@@ -1,1 +1,0 @@
-{'package', 'import', 'encoding', 'json', 'type', 'Config', 'struct', 'UrlApiKey', 'string', 'func', 'getConfig', 'file', 'Open', 'conf', 'panic', 'Could', 'read', 'config', 'Error', 'decoder', 'NewDecoder', 'Decode', 'return'}
