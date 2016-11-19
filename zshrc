@@ -132,3 +132,4 @@ export AMP_BY_EXAMPLE_DEPLOY_KEY="Fast/Faster/Amp"
 
 #Hierarchy Viewer Variable 
 export ANDROID_HVPROTO=ddm
+export PATH="$PATH:$HOME/.yarn/bin"
