@@ -1,0 +1,361 @@
+let mapleader = " "
+set nocompatible
+
+" Vundle"{{{
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+" The following are examples of different formats supported.
+" Keep Plugin commands between vundle#begin/end.
+" plugin on GitHub repo
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-surround'
+Plugin 'Shougo/neocomplete'
+Plugin 'Shougo/neosnippet'
+Plugin 'Shougo/neosnippet-snippets'
+Plugin 'mileszs/ack.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'vim-syntastic/syntastic'
+Plugin 'vim-scripts/Tagbar'
+Plugin 'vim-airline/vim-airline'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'kien/ctrlp.vim'
+Plugin 'tpope/vim-endwise'
+Plugin 'fatih/vim-go'
+Plugin 'heavenshell/vim-jsdoc'
+Plugin 'tpope/vim-markdown'
+Plugin 'itspriddle/vim-marked'
+Plugin 'tpope/vim-repeat'
+Plugin 'mikewest/vimroom'
+Plugin 'pangloss/vim-javascript'
+
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+" }}}
+
+" basic editing"{{{
+inoremap jk <esc>
+inoremap kj <esc>
+filetype plugin indent on
+ 
+set foldmethod=marker
+set relativenumber
+syntax on
+set nonumber
+set hlsearch
+set showmatch
+set autoindent
+set history=1000
+set cursorline
+
+" ???
+if has("unnamedplus")
+  set clipboard=unnamedplus
+elseif has("clipboard")
+  set clipboard=unnamed
+endif
+
+set expandtab
+set shiftwidth=2
+set tabstop=2
+set softtabstop=2
+
+set showmode
+set incsearch
+set number
+" delete all trailing whitespace
+:nnoremap <silent> <F9> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
+
+" ???
+" Search for selected text, forwards or backwards.
+vnoremap <silent> * :<C-U>
+  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
+  \gvy/<C-R><C-R>=substitute(
+  \escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
+  \gV:call setreg('"', old_reg, old_regtype)<CR>
+vnoremap <silent> # :<C-U>
+  \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
+  \gvy?<C-R><C-R>=substitute(
+  \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
+  \gV:call setreg('"', old_reg, old_regtype)<CR>
+
+set wildignore+=*/tmp/*,*.so,*.swp,*.class     
+set anti enc=utf-8
+set guifont=Impact}}}
+
+" Keybindings"{{{
+nnoremap <F3> :set invpaste paste?<CR>
+set pastetoggle=<F3>
+map <F7> :VimroomToggle<cr>
+" open Marked application
+map <leader>m :MarkedOpen<cr>
+map <leader>y "*y
+" Move around splits with <c-hjkl>
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-h> <c-w>h
+nnoremap <c-l> <c-w>l
+" Insert a hash rocket with <c-l>
+imap <c-l> <space>=><space>
+" Can't be bothered to understand ESC vs <c-c> in insert mode
+imap <c-c> <esc>
+" Clear the search buffer when hitting return
+nnoremap <cr> :nohlsearch<cr>
+" switch to previous buffer
+nnoremap <leader><leader> <c-^>
+" save
+map <leader>w :w<cr>
+" close buffer
+map <leader>c :bd<cr>
+map <leader>cc :bd!<cr>
+" use silver searcher instead of ack
+let g:ackprg = 'ag --vimgrep --smart-case'                                                   
+cnoreabbrev ag Ack                                                                           
+cnoreabbrev aG Ack                                                                           
+cnoreabbrev Ag Ack                                                                           
+cnoreabbrev AG Ack  
+" quick editing of .vimrc (from sanitz)
+nnoremap <silent> <leader>e :e! ~/.vimrc<cr>
+nnoremap <silent> <leader>s :source ~/.vimrc<cr>
+" enable CMD save
+:map <M-s> :w<kEnter>  "Works in normal mode, must press Esc first"
+:imap <M-s> <Esc>:w<kEnter>i "Works in insert mode, saves and puts back in  insert mode"
+" }}}
+
+" ctrl-p 
+"{{{
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+  \ 'file': '\v\.(exe|so|dll)$'
+  \ }
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+" }}}
+
+" js-doc "(((
+nmap <silent> <C-c> ?function<cr>:noh<cr><Plug>(jsdoc)
+let g:javascript_plugin_jsdoc = 1
+"}}}
+
+" syntastic "{{{
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_loc_list_height = 5
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 1
+let g:syntastic_javascript_checkers = ['eslint']
+
+highlight link SyntasticErrorSign SignColumn
+highlight link SyntasticWarningSign SignColumn
+highlight link SyntasticStyleErrorSign SignColumn
+highlight link SyntasticStyleWarningSign SignColumn
+" }}}
+
+" Colors"{{{
+set background=dark
+" solarized options 
+let g:solarized_termtrans = 1
+colorscheme solarized 
+let g:solarized_bold=0
+
+let vimclojure#WantNailgun = 1
+let g:vimroom_guibackground = '#002b36'
+let g:vimroom_ctermbackground = 8
+set t_Co=256
+if !has('gui_running')
+    " Compatibility for Terminal
+    let g:solarized_termtrans=1
+
+    " Make Solarized use 16 colors for Terminal support
+    let g:solarized_termcolors=16
+endif
+"}}}
+
+" Spelling"{{{
+set spelllang=en
+set spellfile=$HOME/Dropbox/configs/vim/spell/en.utf-8.add
+autocmd BufRead,BufNewFile *.md,*.txt,*.tex setlocal spell
+autocmd FileType gitcommit setlocal spell
+set complete+=kspell
+""}}}
+
+" Nerdtree "{{{
+let NERDTreeShowBookmarks=1
+let NERDTreeChDirMode=0
+let NERDTreeQuitOnOpen=0
+let NERDTreeMouseMode=2
+let NERDTreeShowHidden=1
+let NERDTreeIgnore=['\.pyc','\~$','\.swo$','\.swp$','\.git','\.hg','\.svn','\.bzr']
+let NERDTreeKeepTreeInNewTab=1
+let g:nerdtree_tabs_open_on_gui_startup=0
+map <F2> :NERDTreeToggle<cr>
+let NERDTreeIgnore=['\.DS_Store$', '\.vim$', '\.git[[dir]]$', '\.metadata[[dir]]$', '\.gradle$[[dir]]', '\.idea[[dir]]$', '\.repo[[dir]]$', '\.settings[[dir]]$']
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+" }}}
+
+" Markdown"{{{
+
+let g:vim_markdown_folding_disabled=1
+au BufNewFile,BufRead *.txt set filetype=markdown
+"}}}
+
+" CTAGS"{{{
+
+:set tags=./tags;
+let Tlist_Ctags_Cmd = "/usr/local/bin/ctags"
+let Tlist_WinWidth = 50
+map <F4> :TagbarToggle<cr>
+map <F8> :silent !/usr/local/bin/ctags -R --exclude=.git . --sort=foldcase<cr>
+let Tlist_Use_Right_Window   = 1"}}}
+
+" neocomplete {{{
+"Note: This option must be set in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
+" Disable AutoComplPop.
+let g:acp_enableAtStartup = 0
+" Use neocomplete.
+let g:neocomplete#enable_at_startup = 1
+" Use smartcase.
+let g:neocomplete#enable_smart_case = 1
+" Set minimum syntax keyword length.
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+
+" Define dictionary.
+let g:neocomplete#sources#dictionary#dictionaries = {
+    \ 'default' : '',
+    \ 'vimshell' : $HOME.'/.vimshell_hist',
+    \ 'scheme' : $HOME.'/.gosh_completions'
+        \ }
+
+" Define keyword.
+if !exists('g:neocomplete#keyword_patterns')
+    let g:neocomplete#keyword_patterns = {}
+endif
+let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+
+" Plugin key-mappings.
+inoremap <expr><C-g>     neocomplete#undo_completion()
+inoremap <expr><C-l>     neocomplete#complete_common_string()
+
+" Recommended key-mappings.
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+  return (pumvisible() ? "\<C-y>" : "" ) . "\<CR>"
+  " For no inserting <CR> key.
+  "return pumvisible() ? "\<C-y>" : "\<CR>"
+endfunction
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+" Close popup by <Space>.
+"inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
+
+" AutoComplPop like behavior.
+"let g:neocomplete#enable_auto_select = 1
+
+" Enable omni completion.
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+" Enable heavy omni completion.
+if !exists('g:neocomplete#sources#omni#input_patterns')
+  let g:neocomplete#sources#omni#input_patterns = {}
+endif
+"let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+"let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+"let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+
+" For perlomni.vim setting.
+" https://github.com/c9s/perlomni.vim
+let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+  " }}}
+
+" Airline"{{{
+"":set statusline=%<%f\ (%{&ft})\ %-4(%m%)%=%-19(%3l,%02c%03V%)
+let g:airline_powerline_fonts=1   " make sure powerline font is installed
+let g:airline#extensions#whitespace#mixed_indent_algo = 1"
+set laststatus=2
+"}}}
+
+" Groovy / Gradle"{{{
+
+au BufNewFile,BufRead *.gradle set filetype=groovy
+"}}}
+
+" XML "{{{
+au FileType xml setlocal equalprg=xmllint\ --format\ --recover\ -\ 2>/dev/null
+" }}}
+
+" HTML "{{{
+
+" Escape/unescape & < > HTML entities in range (default current line).
+function! HtmlEntities(line1, line2, action)
+  let search = @/
+  let range = 'silent ' . a:line1 . ',' . a:line2
+  if a:action == 0  " must convert &amp; last
+    execute range . 'sno/&lt;/</eg'
+    execute range . 'sno/&gt;/>/eg'
+    execute range . 'sno/&amp;/&/eg'
+  else              " must convert & first
+    execute range . 'sno/&/&amp;/eg'
+    execute range . 'sno/</&lt;/eg'
+    execute range . 'sno/>/&gt;/eg'
+  endif
+  nohl
+  let @/ = search
+endfunction
+command! -range -nargs=1 Entities call HtmlEntities(<line1>, <line2>, <args>)
+noremap <silent> <leader>h :Entities 0<CR>
+noremap <silent> <leader>H :Entities 1<CR>
+
+"}}}
+
+" Fugitive "{{{
+map <leader>gs :Gstatus<CR>
+map <leader>gc :Gcommit<CR>
+map <leader>gd :Gdiff<CR>
+map <leader>gp :Gpush<CR>
+"}}}
+
+" Go "{{{
+au FileType go nmap <leader>r <Plug>(go-run)
+au FileType go nmap <leader>b <Plug>(go-build)
+au FileType go nmap <leader>t <Plug>(go-test)
+au FileType go nmap <leader>c <Plug>(go-coverage)
+" }}}
+
+" Snippets "{{{
+" Plugin key-mappings.
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+" SuperTab like snippets behavior.
+"imap <expr><TAB>
+" \ pumvisible() ? "\<C-n>" :
+" \ neosnippet#expandable_or_jumpable() ?
+" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+" For conceal markers.
+if has('conceal')
+  set conceallevel=2 concealcursor=niv
+endif
+" }}}
