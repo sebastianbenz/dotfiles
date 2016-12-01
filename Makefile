@@ -4,6 +4,7 @@ install: init install-vim install-git install-custom-zsh
 
 init:
 	git submodule update --init --recursive
+	vim +PluginInstall +qall
 
 update:
 	git submodule foreach git pull origin master
