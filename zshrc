@@ -119,6 +119,12 @@ export PATH="$PATH:/Users/sbenz/Tools/infer-osx-v0.1.0/infer/infer/bin"
 alias log adb logcat
 alias logc adb logcat -c && adb logcat
 
+export AMP_BY_EXAMPLE_DEPLOY_KEY="Fast/Faster/Amp"
+
+#Hierarchy Viewer Variable 
+export ANDROID_HVPROTO=ddm
+export PATH="$PATH:$HOME/.yarn/bin"
+
 # added by travis gem
 [ -f /Users/sbenz/.travis/travis.sh ] && source /Users/sbenz/.travis/travis.sh
 
@@ -127,9 +133,3 @@ source '/Users/sbenz/google-cloud-sdk/path.zsh.inc'
 
 # The next line enables shell command completion for gcloud.
 source '/Users/sbenz/google-cloud-sdk/completion.zsh.inc'
-
-export AMP_BY_EXAMPLE_DEPLOY_KEY="Fast/Faster/Amp"
-
-#Hierarchy Viewer Variable 
-export ANDROID_HVPROTO=ddm
-export PATH="$PATH:$HOME/.yarn/bin"
