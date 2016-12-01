@@ -34,6 +34,7 @@ Plugin 'itspriddle/vim-marked'
 Plugin 'tpope/vim-repeat'
 Plugin 'mikewest/vimroom'
 Plugin 'pangloss/vim-javascript'
+Plugin 'christoomey/vim-tmux-navigator'
 
 
 " All of your Plugins must be added before the following line

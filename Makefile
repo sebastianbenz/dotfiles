@@ -1,6 +1,6 @@
 # http://github.com/mitsuhiko/dotfiles/blob/master/Makefile
 # found in https://github.com/sanitz/dotfiles/blob/master/Makefile 
-install: init install-vim install-git install-custom-zsh 
+install: init install-vim install-git install-custom-zsh install-tmux
 
 init:
 	git submodule update --init --recursive
@@ -18,6 +18,10 @@ install-vim:
 	ln -s `pwd`/vim ~/.vim
 	ln -s ~/.vim/vimrc ~/.vimrc
 	ln -s ~/.vim/ideavimrc ~/.ideavimrc
+
+install-tmux:
+	rm -rf ~/.tmux.conf
+	ln -s `pwd`/tmux/tmux.conf ~/.tmux.conf
 
 install-git:
 	rm -rf ~/.gitconfig ~/.gitignore_global
