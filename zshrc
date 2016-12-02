@@ -88,7 +88,6 @@ alias vi='/usr/local/bin/vim'
 
 export KEYTIMEOUT=1
 source ~/.zsh/opp.zsh/*.zsh
-[[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
 
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_31.jdk/Contents/Home
 
@@ -133,3 +132,4 @@ source '/Users/sbenz/google-cloud-sdk/path.zsh.inc'
 
 # The next line enables shell command completion for gcloud.
 source '/Users/sbenz/google-cloud-sdk/completion.zsh.inc'
+[[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
