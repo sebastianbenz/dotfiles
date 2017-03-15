@@ -101,7 +101,7 @@ export MAVEN_OPTS=-Xmx1024M
 #gradle
 export GRADLE_HOME=/usr/local/Cellar/gradle/2.1/libexec
 export GOPATH=~/Projects/go
-PATH=$PATH:$GOPATH/bin
+PATH=$PATH:$GOPATH/bin:/usr/local/Cellar/node/7.1.0/libexec/npm/bin/
 
 
 DEFAULT_USER=sbenz
